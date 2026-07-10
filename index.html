@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaelo — Управляй своей жизнью</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Vaelo</a>
+      <div class="nav-links">
+        <a href="#management">Управление</a>
+        <a href="#health">Здоровье</a>
+        <a href="#growth">Рост</a>
+        <a href="#design">Дизайн</a>
+        <a href="#cta" class="nav-cta">Попробовать</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#management">Управление</a>
+    <a href="#health">Здоровье</a>
+    <a href="#growth">Рост</a>
+    <a href="#design">Дизайн</a>
+    <a href="#cta" class="nav-cta">Попробовать</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-aura"></div>
+    <div class="hero-aura hero-aura-2"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Персональный OS для твоей жизни
+      </div>
+      <h1 class="hero-title">
+        <span class="typewriter" id="typewriter"></span><span class="cursor-blink">|</span>
+      </h1>
+      <p class="hero-subtitle">Всё в одном приложении: задачи, здоровье, финансы, привычки и цели. Управляй своей жизнью с точностью и стилем.</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">
+          <span>Начать сейчас</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#management" class="btn btn-ghost">
+          <span>Узнать больше</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-target="6">0</span>
+          <span class="hero-stat-label">Модулей</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-row"><span class="hero-stat-number" data-target="20">0</span><span class="hero-stat-plus">+</span></div>
+          <span class="hero-stat-label">Функций</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-target="4">0</span>
+          <span class="hero-stat-label">Темы оформления</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Management Section -->
+  <section class="section section-dark" id="management">
+    <div class="container">
+      <div class="showcase">
+        <div class="showcase-content reveal">
+          <span class="section-tag">Управление</span>
+          <h2 class="section-title">Порядок в<br><span class="text-accent">каждом дне.</span></h2>
+          <p class="section-desc">Планируй задачи, отслеживай события в календаре и веди дневник — всё в одном месте.</p>
+          <div class="showcase-list">
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div>
+                <strong>Задачи и план дня</strong>
+                <span>Умное расписание с приоритетами и прогрессом по дням</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <strong>Календарь</strong>
+                <span>Полный месячный вид с событиями и напоминаниями</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div>
+                <strong>Дневник</strong>
+                <span>Заметки с приоритетами, фильтрами и группировкой по дням</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-visual reveal" data-delay="200">
+          <div class="image-carousel" id="carousel-management">
+            <div class="carousel-viewport">
+              <img src="assets/home.jpg" alt="Главный экран" class="carousel-img active" loading="lazy">
+              <img src="assets/calendar.jpg" alt="Календарь" class="carousel-img" loading="lazy">
+              <img src="assets/journal.jpg" alt="Дневник" class="carousel-img" loading="lazy">
+            </div>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Health Section -->
+  <section class="section" id="health">
+    <div class="container">
+      <div class="showcase showcase-reverse">
+        <div class="showcase-visual reveal">
+          <div class="image-carousel" id="carousel-health">
+            <div class="carousel-viewport">
+              <img src="assets/sport.jpg" alt="Спорт" class="carousel-img active" loading="lazy">
+              <img src="assets/food.jpg" alt="Питание" class="carousel-img" loading="lazy">
+              <img src="assets/sleep.jpg" alt="Сон" class="carousel-img" loading="lazy">
+            </div>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-content reveal" data-delay="100">
+          <span class="section-tag">Здоровье</span>
+          <h2 class="section-title">Тело. Разум.<br><span class="text-accent">Баланс.</span></h2>
+          <p class="section-desc">Три ключевых модуля для поддержания здоровья в идеальном состоянии.</p>
+          <div class="showcase-list">
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path d="M22 14l-4.5-3-3 5-4.5-3L5 18"/><path d="M14.5 5l-3 5-4.5-3"/></svg>
+              </div>
+              <div>
+                <strong>Спорт</strong>
+                <span>Библиотека из 20+ упражнений, планер тренировок с трекингом подходов, еженедельные графики</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
+              <div>
+                <strong>Питание</strong>
+                <span>Калории, белки, жиры, углеводы. Библиотека продуктов, расчёт по граммам, недельные графики</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              </div>
+              <div>
+                <strong>Сон</strong>
+                <span>Трекер времени сна, анализ качества, процент восстановления, месячная статистика</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Growth Section -->
+  <section class="section section-dark" id="growth">
+    <div class="container">
+      <div class="showcase">
+        <div class="showcase-content reveal">
+          <span class="section-tag">Рост</span>
+          <h2 class="section-title">Финансы. Цели.<br><span class="text-accent">Привычки.</span></h2>
+          <p class="section-desc">Управляй финансами, отслеживай хобби и строй привычки, которые меняют жизнь.</p>
+          <div class="showcase-list">
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div>
+                <strong>Финансы</strong>
+                <span>Бюджеты, категории, подписки, bezier-графики по дням/неделям/месяцам/годам</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div>
+                <strong>Цели</strong>
+                <span>Конструктор целей с категориями и автопрогрессом на основе реальных данных</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div>
+                <strong>Привычки</strong>
+                <span>Трекер со стриками, категориями, временем дня и динамикой за неделю</span>
+              </div>
+            </div>
+            <div class="showcase-item">
+              <div class="showcase-item-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <strong>Хобби</strong>
+                <span>Книги, фильмы, сериалы, навыки. Оценки 1–10, прогресс, список завершённых</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-visual reveal" data-delay="200">
+          <div class="image-carousel" id="carousel-growth">
+            <div class="carousel-viewport">
+              <img src="assets/finance.jpg" alt="Финансы" class="carousel-img active" loading="lazy">
+              <img src="assets/interes.jpg" alt="Хобби" class="carousel-img" loading="lazy">
+              <img src="assets/privichka.jpg" alt="Привычки" class="carousel-img" loading="lazy">
+              <img src="assets/celi.jpg" alt="Цели" class="carousel-img" loading="lazy">
+            </div>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" data-index="0"></button>
+              <button class="carousel-dot" data-index="1"></button>
+              <button class="carousel-dot" data-index="2"></button>
+              <button class="carousel-dot" data-index="3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Notifications -->
+  <section class="section" id="notifications">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Уведомления</span>
+        <h2 class="section-title">Умная забота<br><span class="text-accent">о тебе.</span></h2>
+        <p class="section-desc">Vaelo знает, когда напомнить о воде, подсказать задачу или предупредить о подписке.</p>
+      </div>
+
+      <div class="notifications-showcase reveal">
+        <div class="notification-card">
+          <div class="notification-icon" style="background: rgba(165,180,252,0.15); color: #a5b4fc;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+          <div class="notification-text">
+            <strong>Напоминание о воде</strong>
+            <span>Прошло 3 часа — выпей стакан воды</span>
+          </div>
+          <span class="notification-time">сейчас</span>
+        </div>
+
+        <div class="notification-card">
+          <div class="notification-icon" style="background: rgba(52,211,153,0.15); color: #34D399;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div class="notification-text">
+            <strong>Цель достигнута!</strong>
+            <span>Ты выполнил цель «Пробежка 5км»</span>
+          </div>
+          <span class="notification-time">5 мин</span>
+        </div>
+
+        <div class="notification-card">
+          <div class="notification-icon" style="background: rgba(249,115,22,0.15); color: #F97316;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="notification-text">
+            <strong>Подписка завтра</strong>
+            <span>Spotify Premium — списание 299₽</span>
+          </div>
+          <span class="notification-time">завтра</span>
+        </div>
+
+        <div class="notification-card">
+          <div class="notification-icon" style="background: rgba(168,85,247,0.15); color: #A855F7;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path d="M22 14l-4.5-3-3 5-4.5-3L5 18"/></svg>
+          </div>
+          <div class="notification-text">
+            <strong>Время тренировки</strong>
+            <span>2 дня без спорта — тело ждёт!</span>
+          </div>
+          <span class="notification-time">напоминание</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Section -->
+  <section class="section section-dark" id="design">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Дизайн</span>
+        <h2 class="section-title">Красота в<br><span class="text-accent">каждой детали.</span></h2>
+        <p class="section-desc">Четыре темы оформления на выбор — от тёмной элегантности до тёплой классики.</p>
+      </div>
+
+      <div class="themes-grid reveal">
+        <div class="theme-card" data-theme="graphite">
+          <div class="theme-preview" style="background: #111111; border: 1px solid #2a2a2a;">
+            <div class="theme-preview-accent" style="background: #a5b4fc;"></div>
+            <div class="theme-preview-text" style="background: #F2F2F2;"></div>
+            <div class="theme-preview-text short" style="background: #535353;"></div>
+          </div>
+          <span class="theme-name">Graphite</span>
+          <span class="theme-desc">Тёмная элегантность</span>
+        </div>
+        <div class="theme-card" data-theme="dark">
+          <div class="theme-preview" style="background: #0c0c0c; border: 1px solid #1a1a1a;">
+            <div class="theme-preview-accent" style="background: #d4a04a;"></div>
+            <div class="theme-preview-text" style="background: #F2F2F2;"></div>
+            <div class="theme-preview-text short" style="background: #535353;"></div>
+          </div>
+          <span class="theme-name">Dark</span>
+          <span class="theme-desc">Золотой блеск</span>
+        </div>
+        <div class="theme-card" data-theme="light">
+          <div class="theme-preview" style="background: #f7f7f8; border: 1px solid #e5e5e5;">
+            <div class="theme-preview-accent" style="background: #4f46e5;"></div>
+            <div class="theme-preview-text" style="background: #1a1a1a;"></div>
+            <div class="theme-preview-text short" style="background: #999;"></div>
+          </div>
+          <span class="theme-name">Light</span>
+          <span class="theme-desc">Чистота минимализма</span>
+        </div>
+        <div class="theme-card" data-theme="book">
+          <div class="theme-preview" style="background: #f5f0e8; border: 1px solid #e0d8c8;">
+            <div class="theme-preview-accent" style="background: #8b6914;"></div>
+            <div class="theme-preview-text" style="background: #2a2010;"></div>
+            <div class="theme-preview-text short" style="background: #8a7e6a;"></div>
+          </div>
+          <span class="theme-name">Book</span>
+          <span class="theme-desc">Тёплая классика</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section-cta" id="cta">
+    <div class="cta-aura"></div>
+    <div class="cta-aura cta-aura-2"></div>
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2 class="cta-title">Начни управлять<br>своей жизнью <span class="text-accent">сегодня.</span></h2>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary btn-lg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Скачать сейчас</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">Vaelo</span>
+          <span class="footer-tagline">Управляй своей жизнью</span>
+        </div>
+        <div class="footer-copy">&copy; 2025 Vaelo. Создано с вниманием к деталям.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
