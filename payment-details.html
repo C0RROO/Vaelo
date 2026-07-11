@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Реквизиты — Vaelo</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --card: #1a1a1a;
+      --accent: #a5b4fc;
+      --text: #F2F2F2;
+      --text-muted: #737373;
+      --border: #222222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+    }
+
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      background: linear-gradient(135deg, var(--accent), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(34, 34, 34, 0.5);
+    }
+
+    .row:last-child { border-bottom: none; }
+
+    .row-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .row-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: right;
+    }
+
+    .note {
+      margin-top: 24px;
+      padding: 14px 16px;
+      background: rgba(165, 180, 252, 0.06);
+      border: 1px solid rgba(165, 180, 252, 0.12);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">Vaelo</div>
+      <h1>Реквизиты для оплаты</h1>
+
+      <div class="divider"></div>
+
+      <div class="section-title">Индивидуальный предприниматель</div>
+
+      <div class="row">
+        <span class="row-label">ФИО</span>
+        <span class="row-value">Юрлов Олег Васильевич</span>
+      </div>
+      <div class="row">
+        <span class="row-label">ИНН</span>
+        <span class="row-value">360203213628</span>
+      </div>
+      <div class="row">
+        <span class="row-label">ОГРНИП</span>
+        <span class="row-value">325366800110021</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-title">Контакты</div>
+
+      <div class="row">
+        <span class="row-label">Email</span>
+        <span class="row-value">paskalionesko@gmail.com</span>
+      </div>
+      <div class="row">
+        <span class="row-label">Телефон</span>
+        <span class="row-value">+7 (930) 408-83-65</span>
+      </div>
+
+      <div class="note">
+        Оплата осуществляется через Систему Быстрых Платежей (СБП).
+        Стоимость: 10 ₽ за установку приложения Vaelo.
+      </div>
+    </div>
+
+    <a href="index.html" class="back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Вернуться на сайт
+    </a>
+  </div>
+</body>
+</html>

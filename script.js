@@ -262,4 +262,165 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ——— Download Modal ———
+  const downloadModal = document.getElementById('downloadModal');
+  const paymentModal = document.getElementById('paymentModal');
+  const modalClose = document.getElementById('modalClose');
+  const paymentClose = document.getElementById('paymentClose');
+  const apkOption = document.getElementById('apkOption');
+  const checkPaymentBtn = document.getElementById('checkPaymentBtn');
+  const paymentTimer = document.getElementById('paymentTimer');
+  const paymentQr = document.getElementById('paymentQr');
+  const paymentSuccess = document.getElementById('paymentSuccess');
+  const qrPlaceholder = document.getElementById('qrPlaceholder');
+  const qrImage = document.getElementById('qrImage');
+
+  function openDownloadModal(e) {
+    if (e) e.preventDefault();
+    downloadModal.classList.add('active');
+    document.body.classList.add('modal-open');
+  }
+
+  // Hero "Начать сейчас" button
+  const heroBtn = document.querySelector('.hero-actions .btn-primary');
+  if (heroBtn) heroBtn.addEventListener('click', openDownloadModal);
+
+  // CTA "Скачать сейчас" button
+  const ctaDownloadBtn = document.querySelector('.section-cta .btn-primary');
+  if (ctaDownloadBtn) ctaDownloadBtn.addEventListener('click', openDownloadModal);
+
+  function closeModal(modal) {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+  }
+
+  function closeAllModals() {
+    closeModal(downloadModal);
+    closeModal(paymentModal);
+    clearInterval(paymentInterval);
+    // Reset payment state
+    paymentQr.style.display = '';
+    paymentSuccess.style.display = 'none';
+  }
+
+  modalClose.addEventListener('click', () => closeModal(downloadModal));
+  paymentClose.addEventListener('click', () => {
+    closeModal(paymentModal);
+    clearInterval(paymentInterval);
+    paymentQr.style.display = '';
+    paymentSuccess.style.display = 'none';
+  });
+
+  // Close on overlay click
+  [downloadModal, paymentModal].forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeAllModals();
+    });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllModals();
+  });
+
+  // ——— APK Payment Flow ———
+  let paymentInterval = null;
+
+  apkOption.addEventListener('click', () => {
+    // Close download modal, open payment modal
+    closeModal(downloadModal);
+    paymentModal.classList.add('active');
+    document.body.classList.add('modal-open');
+
+    // Reset state
+    paymentQr.style.display = '';
+    paymentSuccess.style.display = 'none';
+
+    // Start payment timer (15 minutes)
+    startPaymentTimer();
+
+    // TODO: Replace with real payment API call
+    // Example flow:
+    // 1. POST to your backend → create SBP payment
+    // 2. Backend calls YooKassa / Robokassa API
+    // 3. Returns QR code URL or payment URL
+    // 4. Display QR code here
+    //
+    // fetch('/api/create-payment', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ amount: 10, currency: 'RUB', description: 'Vaelo APK' })
+    // })
+    // .then(res => res.json())
+    // .then(data => {
+    //   qrPlaceholder.style.display = 'none';
+    //   qrImage.src = data.qr_url;
+    //   qrImage.style.display = 'block';
+    //   // Store payment ID for status check
+    //   currentPaymentId = data.payment_id;
+    // });
+  });
+
+  function startPaymentTimer() {
+    let seconds = 15 * 60; // 15 minutes
+    clearInterval(paymentInterval);
+
+    function updateTimer() {
+      const min = Math.floor(seconds / 60);
+      const sec = seconds % 60;
+      paymentTimer.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+
+      if (seconds <= 0) {
+        clearInterval(paymentInterval);
+        paymentTimer.textContent = 'Истёк';
+        paymentTimer.style.color = 'var(--danger)';
+      }
+      seconds--;
+    }
+
+    updateTimer();
+    paymentInterval = setInterval(updateTimer, 1000);
+  }
+
+  // Check payment status
+  checkPaymentBtn.addEventListener('click', () => {
+    checkPaymentBtn.disabled = true;
+    checkPaymentBtn.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      Проверяем...
+    `;
+
+    // TODO: Replace with real payment status check
+    // fetch(`/api/check-payment/${currentPaymentId}`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if (data.status === 'succeeded') {
+    //       showSuccess();
+    //     } else {
+    //       // Payment not found or pending
+    //       checkPaymentBtn.disabled = false;
+    //       checkPaymentBtn.innerHTML = `...retry text...`;
+    //     }
+    //   });
+
+    // Demo: simulate payment success after 2 seconds
+    setTimeout(() => {
+      showSuccess();
+    }, 2000);
+  });
+
+  function showSuccess() {
+    clearInterval(paymentInterval);
+    paymentQr.style.display = 'none';
+    paymentSuccess.style.display = '';
+
+    // Auto-start download
+    const downloadLink = document.getElementById('downloadLink');
+    if (downloadLink) {
+      setTimeout(() => {
+        downloadLink.click();
+      }, 800);
+    }
+  }
+
 });
