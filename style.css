@@ -316,6 +316,7 @@ body:hover .cursor-glow {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  min-width: 820px;
 }
 
 .typewriter {
