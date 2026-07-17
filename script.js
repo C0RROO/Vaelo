@@ -65,14 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ——— Navigation Scroll ———
   const nav = document.getElementById('nav');
-
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
 
   // ——— Mobile Menu ———
   const burger = document.getElementById('navBurger');
@@ -289,5 +284,19 @@ document.addEventListener('DOMContentLoaded', () => {
       preview.style.transform = '';
     });
   });
+
+  // ——— QR Modal ———
+  const qrBtn = document.getElementById('qrBtn');
+  const qrModal = document.getElementById('qrModal');
+  const qrBackdrop = document.getElementById('qrBackdrop');
+  const qrClose = document.getElementById('qrClose');
+
+  function openQr() { qrModal.classList.add('active'); }
+  function closeQr() { qrModal.classList.remove('active'); }
+
+  qrBtn.addEventListener('click', openQr);
+  qrClose.addEventListener('click', closeQr);
+  qrBackdrop.addEventListener('click', closeQr);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeQr(); });
 
 });

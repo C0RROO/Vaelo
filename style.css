@@ -82,25 +82,31 @@ body:hover .cursor-glow {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 16px 24px;
-  transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s, border-color 0.3s;
-  border-bottom: 1px solid transparent;
-}
-
-.nav.scrolled {
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--border);
-  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-inner {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  padding: 14px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  margin-top: 0;
+  transition: border-color 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease, border-radius 0.3s ease, margin-top 0.3s ease;
+}
+
+.nav.scrolled .nav-inner {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: var(--border);
+  border-radius: 20px;
+  margin-top: 8px;
 }
 
 .nav-logo {
@@ -112,11 +118,13 @@ body:hover .cursor-glow {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  padding-left: 10px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 32px;
   font-size: 14px;
   font-weight: 500;
@@ -151,7 +159,7 @@ body:hover .cursor-glow {
   background: var(--accent-dim);
   color: var(--accent) !important;
   padding: 8px 20px;
-  border-radius: var(--radius-full);
+  border-radius: 10px;
   border: 1px solid rgba(165, 180, 252, 0.2);
   transition: all var(--transition);
 }
@@ -306,17 +314,16 @@ body:hover .cursor-glow {
 .hero-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(48px, 8vw, 88px);
+  font-size: clamp(32px, 8vw, 88px);
   line-height: 1.15;
   letter-spacing: -2px;
   margin-bottom: 24px;
   opacity: 0;
   animation: fadeUp 0.8s 0.4s forwards;
-  min-height: 2.3em;
+  min-height: 3.5em;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  min-width: 820px;
 }
 
 .typewriter {
@@ -483,6 +490,7 @@ body:hover .cursor-glow {
 /* Section */
 .section {
   padding: 120px 24px;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -596,14 +604,27 @@ body:hover .cursor-glow {
   position: relative;
   max-width: 300px;
   margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.image-carousel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 104%;
+  aspect-ratio: 1245 / 2546;
+  transform: translate(-50%, -50%);
+  background: url('../assets/iPhone.png') center / contain no-repeat;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .carousel-viewport {
   position: relative;
   overflow: hidden;
   border-radius: 36px;
-  border: 1px solid #2a2a2a;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.03) inset;
+  aspect-ratio: 1125 / 2436;
   background: #1a1a1a;
 }
 
@@ -627,7 +648,11 @@ body:hover .cursor-glow {
   display: flex;
   justify-content: center;
   gap: 8px;
-  padding: 16px 0 0;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  z-index: 3;
 }
 
 .carousel-dot {
@@ -870,8 +895,120 @@ body:hover .cursor-glow {
 
 .cta-buttons {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cta-store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.cta-main-row {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
+  position: relative;
+}
+
+.btn-qr {
+  position: absolute;
+  right: -60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-qr:hover {
+  transform: translateY(-2px);
+}
+
+.btn-qr:hover img {
+  transform: scale(1.15);
+}
+
+.btn-qr img {
+  width: 24px;
+  height: 24px;
+  transition: transform var(--transition);
+}
+
+/* QR Modal */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.qr-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.qr-modal-content {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qr-modal.active .qr-modal-content {
+  transform: scale(1);
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.qr-modal-close:hover {
+  color: var(--text);
+}
+
+.qr-modal-img {
+  width: 320px;
+  height: 320px;
+  border-radius: var(--radius-md);
 }
 
 /* Footer */
@@ -929,6 +1066,12 @@ body:hover .cursor-glow {
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .nav-links {
+    gap: 20px;
+  }
+  .nav-links a {
+    font-size: 13px;
+  }
   .showcase {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -942,7 +1085,25 @@ body:hover .cursor-glow {
 }
 
 @media (max-width: 768px) {
+  .nav-inner {
+    padding: 12px 16px;
+    max-width: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    margin-top: 0;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .nav.scrolled .nav-inner {
+    border-radius: 0;
+    margin-top: 0;
+  }
   .nav-links {
+    display: none;
+  }
+  .nav-cta {
     display: none;
   }
   .nav-burger {
@@ -950,6 +1111,13 @@ body:hover .cursor-glow {
   }
   .mobile-menu {
     display: flex;
+  }
+  .hero {
+    padding: 100px 16px 60px;
+    min-height: 100dvh;
+  }
+  .hero-title {
+    min-height: 3.5em;
   }
   .hero-stats {
     gap: 20px;
@@ -983,7 +1151,7 @@ body:hover .cursor-glow {
 @media (max-width: 480px) {
   .hero-title {
     letter-spacing: -1px;
-    min-height: 2.5em;
+    min-height: 1.2em;
   }
   .hero-stats {
     flex-direction: column;
