@@ -615,7 +615,7 @@ body:hover .cursor-glow {
   height: 104%;
   aspect-ratio: 1245 / 2546;
   transform: translate(-50%, -50%);
-  background: url('../assets/iPhone.png') center / contain no-repeat;
+  background: url('assets/iPhone.png') center / contain no-repeat;
   pointer-events: none;
   z-index: 2;
 }
