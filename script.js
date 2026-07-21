@@ -5,6 +5,18 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ——— Hero fade-in ———
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    hero.style.opacity = '0';
+    hero.style.transition = 'opacity 0.8s ease';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        hero.style.opacity = '1';
+      });
+    });
+  }
+
   // ——— Typewriter Effect ———
   const typewriterEl = document.getElementById('typewriter');
   const phrases = [
@@ -42,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(type, typeSpeed);
   }
 
-  setTimeout(type, 1200);
+  setTimeout(type, 800);
 
   // ——— Cursor Glow ———
   const glow = document.getElementById('cursorGlow');
@@ -52,6 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+
+    // Hide glow on gray sections (section-alt)
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    const section = el ? el.closest('.section') : null;
+    glow.style.opacity = (section && section.classList.contains('section-alt')) ? '0' : '1';
   });
 
   function animateGlow() {
@@ -63,48 +80,89 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   animateGlow();
 
-  // ——— Navigation Scroll ———
-  const nav = document.getElementById('nav');
+  // ——— Soft snap: finish scroll only when very close to edge and user paused ———
+  let snapTimeout = null;
+  let scrollTimer = null;
+  let isSnapping = false;
+
+  function getSectionIndex(scrollY) {
+    const vh = window.innerHeight;
+    return Math.round(scrollY / vh);
+  }
+
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
+    if (isSnapping) return;
+    if (snapTimeout) clearTimeout(snapTimeout);
+    if (scrollTimer) clearTimeout(scrollTimer);
+
+    // Wait for user to stop scrolling for 200ms before considering snap
+    scrollTimer = setTimeout(() => {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      const sectionIdx = getSectionIndex(scrollY);
+      const sectionTop = sectionIdx * vh;
+      const sectionBot = sectionTop + vh;
+      const progress = (scrollY - sectionTop) / vh;
+
+      // Only snap if very close to edge (92%+ down or 8%+ up from top)
+      if (progress > 0.92 && scrollY < document.body.scrollHeight - vh) {
+        isSnapping = true;
+        window.scrollTo({ top: sectionBot, behavior: 'smooth' });
+        setTimeout(() => { isSnapping = false; }, 600);
+      } else if (progress < 0.08 && sectionIdx > 0) {
+        isSnapping = true;
+        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        setTimeout(() => { isSnapping = false; }, 600);
+      }
+    }, 200);
   }, { passive: true });
 
-  // ——— Mobile Menu ———
-  const burger = document.getElementById('navBurger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  let menuOpen = false;
+  // ——— Slide Entrance Animations ———
+  const allSections = document.querySelectorAll('.section');
 
-  burger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('active', menuOpen);
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuOpen = false;
-      mobileMenu.classList.remove('active');
-    });
-  });
-
-  // ——— Scroll Reveal ———
-  const revealElements = document.querySelectorAll('.reveal');
-
-  const revealObserver = new IntersectionObserver((entries) => {
+  const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, parseInt(delay));
-        revealObserver.unobserve(entry.target);
+        entry.target.classList.add('in-view');
       }
     });
   }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
+    threshold: 0.15
   });
 
-  revealElements.forEach(el => revealObserver.observe(el));
+  allSections.forEach(section => slideObserver.observe(section));
+
+  // ——— Roadmap Scroll Tracking ———
+  const roadmapItems = document.querySelectorAll('.roadmap-item');
+  const sectionIds = ['hero', 'management', 'health', 'growth', 'notifications', 'design', 'cta'];
+  const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  // Track which section is in view
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        roadmapItems.forEach(item => {
+          item.classList.toggle('active', item.dataset.section === id);
+        });
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  sectionElements.forEach(el => sectionObserver.observe(el));
+
+  // Smooth scroll for roadmap links (uses native snap)
+  roadmapItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
   // ——— Counter Animation ———
   const statNumbers = document.querySelectorAll('.hero-stat-number');
@@ -137,17 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.5 });
 
   statNumbers.forEach(el => counterObserver.observe(el));
-
-  // ——— Smooth Scroll ———
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 
   // ——— Parallax for hero auras ———
   const heroAuras = document.querySelectorAll('.hero-aura');
@@ -182,6 +229,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Arrow navigation
+    const prevArrow = carousel.querySelector('.carousel-arrow--prev');
+    const nextArrow = carousel.querySelector('.carousel-arrow--next');
+
+    if (prevArrow) {
+      prevArrow.addEventListener('click', () => {
+        goTo(current > 0 ? current - 1 : images.length - 1);
+        resetAutoplay();
+      });
+    }
+
+    if (nextArrow) {
+      nextArrow.addEventListener('click', () => {
+        goTo(current < images.length - 1 ? current + 1 : 0);
+        resetAutoplay();
+      });
+    }
+
     function autoplay() {
       autoplayTimer = setInterval(() => {
         goTo((current + 1) % images.length);
@@ -195,11 +260,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     autoplay();
 
-    // Pause on hover
     carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
     carousel.addEventListener('mouseleave', autoplay);
 
-    // Touch/swipe support
     let startX = 0;
 
     carousel.addEventListener('touchstart', (e) => {
@@ -220,28 +283,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ——— Notification cards stagger ———
+  // ——— Notification cards mouse parallax (smooth, tracks entire section) ———
   const notifCards = document.querySelectorAll('.notification-card');
+  const notifSection = document.getElementById('notifications');
 
-  const notifObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        const idx = Array.from(notifCards).indexOf(entry.target);
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, idx * 100);
-        notifObserver.unobserve(entry.target);
-      }
+  if (notifSection && notifCards.length) {
+    const cardData = Array.from(notifCards).map((card, i) => ({
+      el: card,
+      depth: 15 + i * 5,
+      rotBase: parseFloat(getComputedStyle(card).getPropertyValue('--rot')) || 0,
+      currentX: 0,
+      currentY: 0,
+      targetX: 0,
+      targetY: 0
+    }));
+
+    notifSection.addEventListener('mousemove', (e) => {
+      const rect = notifSection.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) / rect.width - 0.5;
+      const my = (e.clientY - rect.top) / rect.height - 0.5;
+
+      cardData.forEach(d => {
+        d.targetX = mx * d.depth;
+        d.targetY = my * d.depth;
+      });
     });
-  }, { threshold: 0.2 });
 
-  notifCards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(16px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    notifObserver.observe(card);
-  });
+    notifSection.addEventListener('mouseleave', () => {
+      cardData.forEach(d => {
+        d.targetX = 0;
+        d.targetY = 0;
+      });
+    });
+
+    function animateNotifCards() {
+      cardData.forEach(d => {
+        d.currentX += (d.targetX - d.currentX) * 0.08;
+        d.currentY += (d.targetY - d.currentY) * 0.08;
+        d.el.style.transform = `rotate(${d.rotBase}deg) translate(${d.currentX}px, ${d.currentY}px)`;
+      });
+      requestAnimationFrame(animateNotifCards);
+    }
+    animateNotifCards();
+  }
 
   // ——— Theme card hover glow ———
   const themeCards = document.querySelectorAll('.theme-card');
@@ -251,16 +335,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const glow = card.querySelector('.theme-glow');
     const accent = card.dataset.accent;
 
-    // Set CSS custom properties for dynamic colors
     card.style.setProperty('--card-accent', accent);
-    card.style.setProperty('--card-accent-glow', accent + '4d'); // 30% opacity
+    card.style.setProperty('--card-accent-glow', accent + '4d');
 
     card.addEventListener('mousemove', (e) => {
       const rect = preview.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      // Position glow at cursor
       glow.style.left = x + 'px';
       glow.style.top = y + 'px';
       glow.style.width = '200px';
@@ -268,7 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
       glow.style.marginLeft = '-100px';
       glow.style.marginTop = '-100px';
 
-      // Subtle parallax tilt
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       const rotateX = ((y - centerY) / centerY) * -4;
@@ -298,5 +379,25 @@ document.addEventListener('DOMContentLoaded', () => {
   qrClose.addEventListener('click', closeQr);
   qrBackdrop.addEventListener('click', closeQr);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeQr(); });
+
+  // ——— Hero Floating Particles ———
+  const particlesContainer = document.createElement('div');
+  particlesContainer.classList.add('hero-particles');
+  hero.prepend(particlesContainer);
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (4 + Math.random() * 6) + 's';
+    particle.style.animationDelay = Math.random() * 4 + 's';
+    particle.style.width = (1 + Math.random() * 3) + 'px';
+    particle.style.height = particle.style.width;
+    particlesContainer.appendChild(particle);
+    setTimeout(() => particle.remove(), 12000);
+  }
+
+  setInterval(createParticle, 500);
+  for (let i = 0; i < 12; i++) setTimeout(createParticle, i * 250);
 
 });

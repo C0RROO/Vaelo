@@ -15,34 +15,45 @@
   <!-- Cursor glow -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">Vaelo</a>
-      <div class="nav-links">
-        <a href="#management">Управление</a>
-        <a href="#health">Здоровье</a>
-        <a href="#growth">Рост</a>
-        <a href="#design">Дизайн</a>
-      </div>
-      <a href="#cta" class="nav-cta">Попробовать</a>
-      <button class="nav-burger" id="navBurger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
+  <!-- Roadmap Sidebar -->
+  <nav class="roadmap" id="roadmap">
+    <div class="roadmap-track">
+      <div class="roadmap-line"></div>
+    </div>
+    <div class="roadmap-items">
+      <a href="#hero" class="roadmap-item active" data-section="hero">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Главная</span>
+      </a>
+      <a href="#management" class="roadmap-item" data-section="management">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Управление</span>
+      </a>
+      <a href="#health" class="roadmap-item" data-section="health">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Здоровье</span>
+      </a>
+      <a href="#growth" class="roadmap-item" data-section="growth">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Рост</span>
+      </a>
+      <a href="#notifications" class="roadmap-item" data-section="notifications">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Уведомления</span>
+      </a>
+      <a href="#design" class="roadmap-item" data-section="design">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Дизайн</span>
+      </a>
+      <a href="#cta" class="roadmap-item" data-section="cta">
+        <span class="roadmap-dot"></span>
+        <span class="roadmap-text">Скачать</span>
+      </a>
     </div>
   </nav>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#management">Управление</a>
-    <a href="#health">Здоровье</a>
-    <a href="#growth">Рост</a>
-    <a href="#design">Дизайн</a>
-    <a href="#cta" class="nav-cta">Попробовать</a>
-  </div>
-
   <!-- Hero Section -->
-  <section class="hero" id="hero">
+  <section class="section hero" id="hero">
     <div class="hero-aura"></div>
     <div class="hero-aura hero-aura-2"></div>
     <div class="hero-vignette"></div>
@@ -87,7 +98,7 @@
   </section>
 
   <!-- Management Section -->
-  <section class="section section-dark" id="management">
+  <section class="section section-alt" id="management">
     <div class="container">
       <div class="showcase">
         <div class="showcase-content reveal">
@@ -96,27 +107,21 @@
           <p class="section-desc">Планируй задачи, отслеживай события в календаре и веди дневник — всё в одном месте.</p>
           <div class="showcase-list">
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-              </div>
+              <img src="assets/svg/pen.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Задачи и план дня</strong>
                 <span>Умное расписание с приоритетами и прогрессом по дням</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </div>
+              <img src="assets/svg/calendar.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Календарь</strong>
                 <span>Полный месячный вид с событиями и напоминаниями</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
+              <img src="assets/svg/diary.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Дневник</strong>
                 <span>Заметки с приоритетами, фильтрами и группировкой по дням</span>
@@ -126,11 +131,17 @@
         </div>
         <div class="showcase-visual reveal" data-delay="200">
           <div class="image-carousel" id="carousel-management">
+            <button class="carousel-arrow carousel-arrow--prev" aria-label="Назад">
+              <img src="assets/svg/left.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-viewport">
               <img src="assets/home.jpg" alt="Главный экран" class="carousel-img active" loading="lazy">
               <img src="assets/calendar.jpg" alt="Календарь" class="carousel-img" loading="lazy">
               <img src="assets/journal.jpg" alt="Дневник" class="carousel-img" loading="lazy">
             </div>
+            <button class="carousel-arrow carousel-arrow--next" aria-label="Вперёд">
+              <img src="assets/svg/right.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-dots">
               <button class="carousel-dot active" data-index="0"></button>
               <button class="carousel-dot" data-index="1"></button>
@@ -148,11 +159,17 @@
       <div class="showcase showcase-reverse">
         <div class="showcase-visual reveal">
           <div class="image-carousel" id="carousel-health">
+            <button class="carousel-arrow carousel-arrow--prev" aria-label="Назад">
+              <img src="assets/svg/left.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-viewport">
               <img src="assets/sport.jpg" alt="Спорт" class="carousel-img active" loading="lazy">
               <img src="assets/food.jpg" alt="Питание" class="carousel-img" loading="lazy">
               <img src="assets/sleep.jpg" alt="Сон" class="carousel-img" loading="lazy">
             </div>
+            <button class="carousel-arrow carousel-arrow--next" aria-label="Вперёд">
+              <img src="assets/svg/right.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-dots">
               <button class="carousel-dot active" data-index="0"></button>
               <button class="carousel-dot" data-index="1"></button>
@@ -166,27 +183,21 @@
           <p class="section-desc">Три ключевых модуля для поддержания здоровья в идеальном состоянии.</p>
           <div class="showcase-list">
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path d="M22 14l-4.5-3-3 5-4.5-3L5 18"/><path d="M14.5 5l-3 5-4.5-3"/></svg>
-              </div>
+              <img src="assets/svg/training.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Спорт</strong>
                 <span>Библиотека из 20+ упражнений, планер тренировок с трекингом подходов, еженедельные графики</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
+              <img src="assets/svg/eat.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Питание</strong>
                 <span>Калории, белки, жиры, углеводы. Библиотека продуктов, расчёт по граммам, недельные графики</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-              </div>
+              <img src="assets/svg/moon.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Сон</strong>
                 <span>Трекер времени сна, анализ качества, процент восстановления, месячная статистика</span>
@@ -199,7 +210,7 @@
   </section>
 
   <!-- Growth Section -->
-  <section class="section section-dark" id="growth">
+  <section class="section section-alt" id="growth">
     <div class="container">
       <div class="showcase">
         <div class="showcase-content reveal">
@@ -208,36 +219,28 @@
           <p class="section-desc">Управляй финансами, отслеживай хобби и строй привычки, которые меняют жизнь.</p>
           <div class="showcase-list">
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              </div>
+              <img src="assets/svg/finance.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Финансы</strong>
                 <span>Бюджеты, категории, подписки, bezier-графики по дням/неделям/месяцам/годам</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
+              <img src="assets/svg/star.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Цели</strong>
                 <span>Конструктор целей с категориями и автопрогрессом на основе реальных данных</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-              </div>
+              <img src="assets/svg/habits.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Привычки</strong>
                 <span>Трекер со стриками, категориями, временем дня и динамикой за неделю</span>
               </div>
             </div>
             <div class="showcase-item">
-              <div class="showcase-item-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              </div>
+              <img src="assets/svg/hobby.svg" alt="" class="showcase-icon" width="24" height="24">
               <div>
                 <strong>Хобби</strong>
                 <span>Книги, фильмы, сериалы, навыки. Оценки 1–10, прогресс, список завершённых</span>
@@ -247,12 +250,18 @@
         </div>
         <div class="showcase-visual reveal" data-delay="200">
           <div class="image-carousel" id="carousel-growth">
+            <button class="carousel-arrow carousel-arrow--prev" aria-label="Назад">
+              <img src="assets/svg/left.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-viewport">
               <img src="assets/finance.jpg" alt="Финансы" class="carousel-img active" loading="lazy">
               <img src="assets/interes.jpg" alt="Хобби" class="carousel-img" loading="lazy">
               <img src="assets/privichka.jpg" alt="Привычки" class="carousel-img" loading="lazy">
               <img src="assets/celi.jpg" alt="Цели" class="carousel-img" loading="lazy">
             </div>
+            <button class="carousel-arrow carousel-arrow--next" aria-label="Вперёд">
+              <img src="assets/svg/right.svg" alt="" width="20" height="20">
+            </button>
             <div class="carousel-dots">
               <button class="carousel-dot active" data-index="0"></button>
               <button class="carousel-dot" data-index="1"></button>
@@ -274,10 +283,10 @@
         <p class="section-desc">Vaelo знает, когда напомнить о воде, подсказать задачу или предупредить о подписке.</p>
       </div>
 
-      <div class="notifications-showcase reveal">
-        <div class="notification-card">
-          <div class="notification-icon" style="background: rgba(165,180,252,0.15); color: #a5b4fc;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+      <div class="notifications-scene">
+        <div class="notification-card notification-card--water" style="--x: 12%; --y: 18%; --rot: -6deg;">
+          <div class="notification-icon">
+            <img src="assets/svg/water.svg" alt="" width="22" height="22">
           </div>
           <div class="notification-text">
             <strong>Напоминание о воде</strong>
@@ -286,9 +295,9 @@
           <span class="notification-time">сейчас</span>
         </div>
 
-        <div class="notification-card">
-          <div class="notification-icon" style="background: rgba(52,211,153,0.15); color: #34D399;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <div class="notification-card notification-card--goals" style="--x: 58%; --y: 10%; --rot: 4deg;">
+          <div class="notification-icon">
+            <img src="assets/svg/goals.svg" alt="" width="22" height="22">
           </div>
           <div class="notification-text">
             <strong>Цель достигнута!</strong>
@@ -297,9 +306,9 @@
           <span class="notification-time">5 мин</span>
         </div>
 
-        <div class="notification-card">
-          <div class="notification-icon" style="background: rgba(249,115,22,0.15); color: #F97316;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="notification-card notification-card--clock" style="--x: 8%; --y: 60%; --rot: 5deg;">
+          <div class="notification-icon">
+            <img src="assets/svg/clock.svg" alt="" width="22" height="22">
           </div>
           <div class="notification-text">
             <strong>Подписка завтра</strong>
@@ -308,9 +317,9 @@
           <span class="notification-time">завтра</span>
         </div>
 
-        <div class="notification-card">
-          <div class="notification-icon" style="background: rgba(168,85,247,0.15); color: #A855F7;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/><path d="M22 14l-4.5-3-3 5-4.5-3L5 18"/></svg>
+        <div class="notification-card notification-card--training" style="--x: 52%; --y: 58%; --rot: -4deg;">
+          <div class="notification-icon">
+            <img src="assets/svg/training.svg" alt="" width="22" height="22">
           </div>
           <div class="notification-text">
             <strong>Время тренировки</strong>
@@ -323,7 +332,7 @@
   </section>
 
   <!-- Design Section -->
-  <section class="section section-dark" id="design">
+  <section class="section section-alt" id="design">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag">Дизайн</span>
